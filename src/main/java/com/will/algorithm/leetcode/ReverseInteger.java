@@ -12,15 +12,21 @@ public class ReverseInteger {
     if (x == 0) {
       return 0;
     }
-    int p = x / 10;
-    int q = x % 10;
-
-    return x;
+    long s = 0;
+    for (int p = x / 10, q = x % 10; p != 0 || q != 0; ) {
+      s = (s * 10) + q;
+      q = p % 10;
+      p = p / 10;
+    }
+    if(s>Integer.MAX_VALUE||s<Integer.MIN_VALUE){
+      return 0;
+    }
+    return (int) s;
   }
 
   public static void main(String[] args) {
-    System.out.println(123 / 10);
-    System.out.println(123 % 10);
+    System.out.println(reverse(123));
+    System.out.println(reverse(-123));
   }
 
 }
